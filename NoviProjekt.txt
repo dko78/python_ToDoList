@@ -2,6 +2,6 @@ Standardni flow za svaki novi Python projekt:
 Otvoriš novi folder projekta.
 Uðeš u njega u terminalu.
 Pokreneš py -m venv .venv.
-Aktiviraš ga: .\.venv\Scripts\Activate.ps1.
+Aktiviraš ga: .\.venv\Scripts\Activate.ps1
 U VS Code odabereš interpreter iz tog .venv.
 To je najbolja praksa da projekti budu odvojeni i uredni.
