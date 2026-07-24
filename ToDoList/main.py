@@ -1,16 +1,27 @@
 #prompt = "Type add or show: "
-todos = []
+#todos = []
 while True:
  user_action = input("Type add or show, edit, complete or exit: ")
  user_action = user_action.strip()
  match user_action:
   case "add":
     todo = input("Enter a todo: ")
-    todos.append(todo)
-  case "show":  # | "display": OR operator
-   for i, item in enumerate(todos):
-    row = f"{i+1}-{item}"
-    print(row) 
+    file = open("Files/todos.txt", "r") 
+    todos = file.readlines()#to stvori listu iz filea
+    file.close()
+
+    todos.append(todo + "\n")
+    
+    file = open("Files/todos.txt", "w")
+    file.writelines(todos)
+    file.close()
+  case "show":  # | "display": OR operator je |
+    file = open("Files/todos.txt", "r") 
+    todos = file.readlines()
+    file.close()
+    for i, item in enumerate(todos):
+        row = f"{i+1}-{item}"
+        print(row) 
   
   case "edit":  
     number = int(input("Number of the todo to edit: "))
@@ -38,3 +49,5 @@ while True:
 # for i, x in enumerate(items):
 #     print(i, x)
 
+#files
+#files.open(r"Files/todos.txt", "r")  # r = read, w = write, a = append. Kad staviš r ispred onda ignorira posebne znakove \n....
