@@ -55,3 +55,7 @@ print(country)  # USA
 print("#raspakiravnje u varijable lista")
 items = ["John", 25, "USA"]
 name, age, country = items
+
+print(type(name))
+print(type(age))
+print(type(country))
