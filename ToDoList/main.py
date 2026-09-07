@@ -5,12 +5,12 @@ while True:
  user_action = user_action.strip()
  match user_action:
   case "add":
-    todo = input("Enter a todo: ")
+    todo = input("Enter a todo: ") + "\n"
     file = open("Files/todos.txt", "r") 
     todos = file.readlines()#to stvori listu iz filea
     file.close()
 
-    todos.append(todo + "\n")
+    todos.append(todo)
     
     file = open("Files/todos.txt", "w")
     file.writelines(todos)
@@ -20,7 +20,7 @@ while True:
     todos = file.readlines()
     file.close()
     for i, item in enumerate(todos):
-        row = f"{i+1}-{item}"
+        row = f"{i+1}-{item.strip()}"
         print(row) 
   
   case "edit":  
