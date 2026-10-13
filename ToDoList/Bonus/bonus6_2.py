@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-from pathlib import Path
 
 contents = [
     "All carrots are to be sliced longitudinally.",
