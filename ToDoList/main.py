@@ -19,8 +19,17 @@ while True:
     file = open("Files/todos.txt", "r") 
     todos = file.readlines()
     file.close()
+    #print(todos) ima \n na kraju pa u petlji mičem
+
+    # new_todos = []
+    # for item in todos:
+    #   new_item = item.strip('\n')
+    #   new_todos.append(new_item)
+    # Ovo zamijenjuje ovo gore
+    # new_todos = [item.strip('\n') for item in todos]
+
     for i, item in enumerate(todos):
-        row = f"{i+1}-{item.strip()}"
+        row = f"{i+1}-{item.strip()}"# bolje ovako nego komplikacija gore
         print(row) 
   
   case "edit":  
