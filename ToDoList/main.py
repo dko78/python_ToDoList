@@ -31,7 +31,7 @@ while True:
     #new_todos = [item.strip('\n') for item in todos] #list comprehension
      
     for i, item in enumerate(todos):
-        row = f"{i+1}-{item.strip()}"
+        row = f"{i+1}-{item.strip()}"# bolje ovako nego komplikacija gore
         print(row) 
   
  if "edit" in user_action:  

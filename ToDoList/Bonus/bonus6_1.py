@@ -1,10 +1,10 @@
-contents = ["All carrots are to be sliced "
+contents = ["All carrots are to be sliced ",
             "longitudinally.",
-            "The carrots were reportedly sliced.",
-            "The slicing process was well presented."]
+            "The carrots were reportedly sliced."
+           ]
 
 filenames = ["doc.txt", "report.txt", "presentation.txt"]
 
 for content, filename in zip(contents, filenames):
-    file = open(rf"../Files/{filename}", 'w')
+    file = open(rf"ToDoList/Files/{filename}", 'w')
     file.write(content)
