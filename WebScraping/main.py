@@ -3,7 +3,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-URL = "https://quotes.toscrape.com/"
+URL = "https://www.index.hr/"
 
 try:
     response = requests.get(URL, timeout=15)
