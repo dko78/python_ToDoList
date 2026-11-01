@@ -1,5 +1,5 @@
 password = input("Unesi lozinku: ")
-
+#dictonary za provjeru uvjeta
 checks = {
     "veliko slovo": False,
     "malo slovo": False,
@@ -9,7 +9,7 @@ checks = {
 
 for char in password:
     if char.isupper():
-        checks["veliko slovo"] = True
+        checks["veliko slovo"] = True#dodavanje u dictonari ide sa [], ne {}
     elif char.islower():
         checks["malo slovo"] = True
     elif char.isdigit():

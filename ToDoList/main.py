@@ -5,27 +5,30 @@
 
 #from unittest import case
 
+def get_todos():
+    with open("Files/todos.txt", "r") as file:
+        todos = file.readlines()
+    return todos
+
 
 while True:
  user_action = input("Type add or show, edit, complete or exit: ")
  user_action = user_action.strip()
 
- if "add" in user_action or 'new' in user_action:  # | "display": OR operator je |
+ if user_action.startswith("add"):  # | "display": OR operator je |
     todo = user_action[4:]+ '\n'#list slicing od 4 mjesta na dalje, da ne bi unosio add u listu
     # file = open("Files/todos.txt", "r") 
     # todos = file.readlines()#to stvori listu iz filea
     # file.close()
-    with open("Files/todos.txt", "r") as file:
-        todos = file.readlines()#to stvori listu iz filea
+    todos = get_todos()
 
     todos.append(todo)
     
     with open("Files/todos.txt", "w") as file:
         file.writelines(todos)
 
- elif "show" in user_action:  # | "display": OR operator je |
-    with open("Files/todos.txt", "r") as file:
-        todos = file.readlines()
+ elif user_action.startswith("show"):  # | "display": OR operator je |
+    todos = get_todos()
 
     #new_todos = [item.strip('\n') for item in todos] #list comprehension
      
@@ -33,31 +36,36 @@ while True:
         row = f"{i+1}-{item.strip()}"# bolje ovako nego komplikacija gore
         print(row) 
   
- elif "edit" in user_action:  
-    number = int(user_action[5:])#pretvara string u int
-    with open("Files/todos.txt", "r") as file:
-            todos = file.readlines()#to stvori listu iz filea
-    new_todo = input("Enter new todo: ")
-    todos[number-1] = new_todo + "\n"
-    with open("Files/todos.txt", "w") as file:
-        file.writelines(todos)
+ elif user_action.startswith("edit"):  
+    try:    
+        number = int(user_action[5:])#pretvara string u int
+        todos = get_todos()
+        new_todo = input("Enter new todo: ")
+        todos[number-1] = new_todo + "\n"
+        with open("Files/todos.txt", "w") as file:
+            file.writelines(todos)
+    except ValueError:
+        print("Your command is not valid.")
+        continue       
+ elif user_action.startswith("complete"):
+    try:
+        number = int(user_action[9:])#uzima broj iz stringa
+        
+        todos = get_todos()
 
- elif "complete" in user_action:
-    number = int(user_action[9:])#uzima broj iz stringa
-    
-    with open("Files/todos.txt", "r") as file:
-            todos = file.readlines()#to stvori listu iz filea
+        todo = todos.pop(number - 1)#treba mi naziv da prije nego ga obrišem ispišem poruku
 
-    todo = todos.pop(number - 1)#treba mi naziv da prije nego ga obrišem ispišem poruku
+        with open("Files/todos.txt", "w") as file:
+            file.writelines(todos)
+        
+        message = f"Todo {todo.strip()} was removed from the list."
+        
+        print(message)
+    except IndexError:
+        print("There is no item with that number.")
+        continue    
 
-    with open("Files/todos.txt", "w") as file:
-        file.writelines(todos)
-    
-    message = f"Todo {todo.strip()} was removed from the list."
-    
-    print(message)
-
- elif "exit" in user_action:
+ elif user_action.startswith("exit"):
    break #izlaz iz while petlje
  else:
     print("Command is not valid!")
