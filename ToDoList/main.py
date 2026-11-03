@@ -6,9 +6,9 @@
 #from unittest import case
 
 def get_todos():
-    with open("Files/todos.txt", "r") as file:
-        todos = file.readlines()
-    return todos
+    with open("Files/todos.txt", "r") as file_local:
+        todos_local = file_local.readlines()
+    return todos_local  
 
 
 while True:
