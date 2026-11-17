@@ -5,6 +5,7 @@ def get_average():
     values = data[1:]  # Skip the header line
     values = [float(value.strip()) for value in values]  # Convert to float and remove whitespace
     average_local = sum(values) / len(values) if values else 0  # Calculate average, handle empty list
+    #ternarni operator:  vrijednost_ako_true if uslov else vrijednost_ako_false
     return average_local
 
 
