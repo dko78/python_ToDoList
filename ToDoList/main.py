@@ -5,12 +5,12 @@
 
 #from unittest import case
 #file_path="Files/todos.txt"
-def get_todos(filepath):
+def get_todos(filepath="Files/todos.txt"):
     with open(filepath, "r") as file_local:
         todos_local = file_local.readlines()
     return todos_local  
 
-def write_todos(filepath, todos_arg):
+def write_todos(filepath="Files/todos.txt", todos_arg=None):
     with open(filepath, "w") as file_local:
         file_local.writelines(todos_arg)
 
@@ -24,14 +24,14 @@ while True:
     # file = open("Files/todos.txt", "r") 
     # todos = file.readlines()#to stvori listu iz filea
     # file.close()
-    todos = get_todos("Files/todos.txt")
+    todos = get_todos()
 
     todos.append(todo)
     
-    write_todos("Files/todos.txt", todos)
+    write_todos(todos_arg=todos)
 
  elif user_action.startswith("show"):  # | "display": OR operator je |
-    todos = get_todos("Files/todos.txt")
+    todos = get_todos()
 
     #new_todos = [item.strip('\n') for item in todos] #list comprehension
      
@@ -42,10 +42,10 @@ while True:
  elif user_action.startswith("edit"):  
     try:    
         number = int(user_action[5:])#pretvara string u int
-        todos = get_todos("Files/todos.txt")
+        todos = get_todos()
         new_todo = input("Enter new todo: ")
         todos[number-1] = new_todo + "\n"
-        write_todos("Files/todos.txt", todos)
+        write_todos(todos_arg=todos)
     except ValueError:
         print("Your command is not valid.")
         continue       
@@ -53,11 +53,11 @@ while True:
     try:
         number = int(user_action[9:])#uzima broj iz stringa
         
-        todos = get_todos("Files/todos.txt")
+        todos = get_todos()
 
         todo = todos.pop(number - 1)#treba mi naziv da prije nego ga obrišem ispišem poruku
 
-        write_todos("Files/todos.txt", todos)
+        write_todos(todos_arg=todos)
         
         message = f"Todo {todo.strip()} was removed from the list."
         
